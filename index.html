@@ -302,7 +302,14 @@
     </div>
     <script>
         $(document).ready(function () {
-            $.getScript("js/script.js").done(function (script, textStatus) { console.info(textStatus); }).fail(function (jqhxr, settings, exception) { $.getScript("https://cdn.jsdelivr.net/gh/BaleshSrle/SFDobojWebAppCollection/js/script.min.js"); });
+            $.getScript("js/script.js")
+                .done(function (script, textStatus) {
+                    console.info('JavaScript je uspješno učitan:', textStatus);
+                })
+                .fail(function (jqhxr, settings, exception) {
+                    console.error('Učitavanje JavaScript-a nije uspjelo:', settings.url, exception);
+                    $.getScript("https://cdn.jsdelivr.net/gh/BaleshSrle/SFDobojWebAppCollection/js/script.min.js");
+                });
         });
     </script>
 </body>
