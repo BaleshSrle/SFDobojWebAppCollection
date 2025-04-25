@@ -1,6 +1,6 @@
 $(document).ready(function () {
     "use strict";
-    console.info("Glavna skripta je pokrenuta.");
+    //console.info("Glavna skripta je pokrenuta.");
     document.normalize();
     $("head").each(function () {
         $(this).prepend("<meta name='mobile-web-app-capable' content='yes'>", "<meta name='apple-mobile-web-app-capable' content='yes'>", "<meta name='MSThemeCompatible' content='yes'>", "<meta http-equiv='cleartype' content='on'>", "<meta http-equiv='x-dns-prefetch-control' content='on'>", "<meta http-equiv='Cache-control' content='no-cache'>", "<meta http-equiv='Pragma' content='no-cache'>", "<meta http-equiv='Expires' content='-1'>");
@@ -46,7 +46,6 @@ $(document).ready(function () {
         $(this).find("img, object").addClass("align-middle px-1");
         $(this).find("span").html("&copy; 2019 - " + new Date().getFullYear() + ".");
     });
-    //$("div.input-group").addClass("mb-3");
     $("div.input-group").slice(2, 4).tooltip({
         placement: 'top',
         title: 'U ovo polje se unosi pozitivni cijeli broj.'
