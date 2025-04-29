@@ -24,25 +24,18 @@ $(document).ready(function () {
         $(this).find("var").addClass("font-weight-bold px-1");
         $(this).find("span:not(.fi)").addClass("font-italic");
     });
-    $("div.alert").each(function () {
-        $("div.alert:eq(0)").addClass("alert-primary");
-        $("div.alert:eq(0)").find("span.fi").addClass("align-middle mx-1")
-        $("div.alert:eq(1)").addClass("alert-info");
-        $("div.alert").children("h4").addClass("alert-heading");
-        $("div.alert").children("p").addClass("mb-0");
-    }).attr("role", "alert");
+    $("div.alert").attr("role", "alert");
+    $("div.alert").eq(0).addClass("alert-primary").append($("<h4></h4>").addClass("alert-heading").text("Napomena"), $("<p></p>").addClass("mb-0").html("Ova kolekcija aplikacija je namjenjena za sve korisnike iz<span class='fi fi-rs align-middle mx-1' title='Srbija'></span>,<span class='fi fi-me align-middle mx-1' title='Crna Gora'></span>,<span class='fi fi-ba align-middle mx-1' title='Bosna i Hercegovina'></span>i<span class='fi fi-hr align-middle mx-1' title='Hrvatska'></span>."));
+    $("div.alert").eq(1).addClass("alert-info").append($("<h4></h4>").addClass("alert-heading").text("Info"), $("<p></p>").addClass("mb-0").html("Podaci za ovu web aplikaciju su iskorišteni iz skripte <strong>Transport opasnih materija - ADR 2007</strong> čiji su autori Mr. Velibor Peulić, Radovan Višković i Željko Matoc"));
     $("hr").addClass("my-2");
     $("figure").append($("<img>").attr({ "src": "https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg", "alt": "ADR Listica" }).addClass("d-block mx-auto my-n3 img-fluid").css("max-height", "200px"), $("<figcaption></figcaption>").addClass("text-center font-italic").text("Primjer naranžastog obilježja sa brojem za obilježavanje opasnosti (HIN) i UN brojem"));
-    $("div.card-footer").each(function () {
-        $(this).children("p").addClass("mb-0 small text-center");
-        $(this).find("img, object").addClass("align-middle px-1");
-        $(this).find("span").html("&copy; 2019 - " + new Date().getFullYear() + ".");
-    }).addClass("text-muted py-1");
+    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img src='https://img.shields.io/github/v/release/twbs/bootstrap?filter=v4.*&logo=bootstrap&logoColor=white&label=Bootstrap&color=7952b3' class='align-middle px-1' alt='Bootstrap Badge'>,<img src='https://img.shields.io/github/v/release/jquery/jquery?filter=3.*&logo=jquery&logoColor=white&label=jQuery&color=0769ad' class='align-middle px-1' alt='jQuery Badge'>preko<img src='https://img.shields.io/badge/jsDelivr-e84d3d?logo=jsdelivr&logoColor=white&labelColor=555555' class='align-middle px-1' alt='jsDelivr Badge'>CDN servera i hostovan je na<img src='https://img.shields.io/badge/by%20GitHub-181717?logo=githubpages&logoColor=white&logoSize=auto&labelColor=222222' class='align-middle px-1' alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<object data='https://img.shields.io/badge/GitHub-181717?logo=github&logoSize=auto&labelColor=555555&link=https%3A%2F%2Fgithub.com%2FBaleshSrle%2FSFDobojWebAppCollection' class='align-middle px-1'></object>.<br>&copy; 2019 - " + new Date().getFullYear() + "."))
     $("div.input-group").each(function () {
         $(this).children("div").addClass("input-group-prepend");
     }).addClass("mb-3");
     $("div.input-group-prepend > span").addClass("input-group-text");
     $("select, input").addClass("form-control").attr("required", "");
+    $("select > option:first-child").attr({ "selected": "true", "disabled": "true" });
     $("input[type='number']").each(function () {
         $(this).filter("#mr, #tp").parent("div.input-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni cijeli broj.' });
         $(this).filter("#mr, #tp").attr({ "min": "1", "skip": "1" });
