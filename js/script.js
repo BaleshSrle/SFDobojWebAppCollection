@@ -12,11 +12,12 @@ $(document).ready(function () {
     $("body").css("background", "url('https://sf.ues.rs.ba/cir/wp-content/uploads/2024/04/LogoPng.png') right bottom / 200px no-repeat fixed padding-box padding-box");
     $("div.container-fluid").addClass("p-3")
     $("h2").each(function () {
-        $(this).addClass("mb-0");
         $(this).parent("div.card-header").addClass("py-2");
         $(this).children("button").addClass("btn btn-link btn-block text-left").attr({ "type": "button", "data-toggle": "collapse" });
-    });
+    }).addClass("mb-0");
     $("div[id^='collapse']").attr("data-parent", "#accordionApp");
+    $("div#collapseTransportProduce > div.card-body div.col-sm-6:last").append($("<p></p>").attr("id", "rezultat"), $("<p></p>").attr("id", "rezultat2"), $("<p></p>").attr("id", "rezultat3"), $("<p></p>").attr("id", "rezultat4"), $("<p></p>").attr("id", "rezultat5"), $("<p></p>").attr("id", "rezultat6"));
+    $("div#collapseADR > div.card-body").append($("<h5></h5>").addClass("pt-3").text("Značenje identifikacionog broja opasnosti"), $("<p></p>").addClass("card-text"), $("<p></p>").addClass("text-muted mb-0").html("&#42;&nbsp;Voda se smije koristiti samo uz odobrenje stručnjaka.<br>Neke opasne materije burno reaguju u kontaktu sa vodom &#40;od ispuštanja otrovnih gasova do samozapaljenja&#41;, zato je potrebno pažljivo rukovanje sa vodom."));
     $("div.card-body:eq(0)").each(function () {
         $(this).children("h5").addClass("card-title");
         $(this).children("p").addClass("card-text");
@@ -24,45 +25,30 @@ $(document).ready(function () {
         $(this).find("span:not(.fi)").addClass("font-italic");
     });
     $("div.alert").each(function () {
-        $(this).attr("role", "alert");
-        $(this).children("h4").addClass("alert-heading");
-        $(this).children("p").addClass("mb-0");
-    });
-    $("div.alert:eq(0)").each(function () {
-        $(this).addClass("alert-primary");
-        $(this).find("span.fi").addClass("align-middle mx-1");
-    });
-    $("div.alert:eq(1)").each(function () {
-        $(this).addClass("alert-info");
-    });
+        $("div.alert:eq(0)").addClass("alert-primary");
+        $("div.alert:eq(0)").find("span.fi").addClass("align-middle mx-1")
+        $("div.alert:eq(1)").addClass("alert-info");
+        $("div.alert").children("h4").addClass("alert-heading");
+        $("div.alert").children("p").addClass("mb-0");
+    }).attr("role", "alert");
     $("hr").addClass("my-2");
-    $("figure").each(function () {
-        $(this).children("img").height(200).attr("alt", "ADR Listica").addClass("d-block mx-auto mb-n3");
-        $(this).children("figcaption").addClass("text-center font-italic");
-    });
+    $("figure").append($("<img>").attr({ "src": "https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg", "alt": "ADR Listica" }).addClass("d-block mx-auto my-n3 img-fluid").css("max-height", "200px"), $("<figcaption></figcaption>").addClass("text-center font-italic").text("Primjer naranžastog obilježja sa brojem za obilježavanje opasnosti (HIN) i UN brojem"));
     $("div.card-footer").each(function () {
-        $(this).addClass("text-muted py-1");
         $(this).children("p").addClass("mb-0 small text-center");
         $(this).find("img, object").addClass("align-middle px-1");
         $(this).find("span").html("&copy; 2019 - " + new Date().getFullYear() + ".");
-    });
-    $("div.input-group").slice(2, 4).tooltip({
-        placement: 'top',
-        title: 'U ovo polje se unosi pozitivni cijeli broj.'
-    });
-    $("div.input-group").slice(4, 6).tooltip({
-        placement: 'top',
-        title: 'U ovo polje se unosi pozitivni ili negativni cijeli broj.'
-    });
+    }).addClass("text-muted py-1");
     $("div.input-group").each(function () {
-        $(this).addClass("mb-3");
         $(this).children("div").addClass("input-group-prepend");
-    });
-    $("div.input-group-prepend").children("span").addClass("input-group-text");
+    }).addClass("mb-3");
+    $("div.input-group-prepend > span").addClass("input-group-text");
     $("select, input").addClass("form-control").attr("required", "");
-    $("input[type='number']").attr("inputmode", "numeric");
-    $("input#mr, input#tp").attr({ "min": "1", "skip": "1" });
-    $("input#ts, input#tpr").attr({ "min": "-50", "max": "50", "step": "1", "pattern": "-?[0-9]{2}" });
+    $("input[type='number']").each(function () {
+        $(this).filter("#mr, #tp").parent("div.input-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni cijeli broj.' });
+        $(this).filter("#mr, #tp").attr({ "min": "1", "skip": "1" });
+        $(this).filter("#ts, #tpr").parent("div.input-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni ili negativni cijeli broj.' });
+        $(this).filter("#ts, #tpr").attr({ "min": "-50", "max": "50", "step": "1", "pattern": "-?[0-9]{2}" });
+    }).attr("inputmode", "numeric");
     $("button.btn-primary").on("click", function () {
         var a = $("#vrs").val();
         var b = $("#gd").val();
