@@ -33,7 +33,10 @@ There is no need to convert from one unit to another unit (ie. *hours in minutes
 
 Using this Web Application, you can be informed about which type of hazardous material has been transported by train :train2: , truck :truck: , van or some other (light) delivery vehicle.
 
-<img src="https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg" alt="ADR Plate" style="display: block; margin: auto; height: 200px;"><br><em style="display: block; margin: auto; text-align: center;">Example of ADR plate with Hazard Identification Number (aka HIN)</em>
+<figure style="display: block; text-align: center;">
+	<img src="https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg" alt="ADR Plate" style="margin: auto; line-height: 1; height: 200px;">
+	<figcaption style="font-size: 90%; font-style: italic; text-align: center;">Example of ADR plate with Hazard Identification Number (aka HIN)</figcaption>
+</figure>
 
 After the selecting the one of the offered labels of HIN, its meaning will be displayed immediately.
 
