@@ -95,76 +95,68 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <form>
-                                    <div class="input-group">
-                                        <div>
-                                            <span>Vrsta rashladnog sredstva</span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md">
+                                            <label for="vrs">Vrsta rashladnog sredstva</label>
+                                            <select id="vrs">
+                                                <option>Izaberite rashladno sredstvo</option>
+                                                <option value="80" label="Vodeni led">Vodeni led</option>
+                                                <option value="150" label="Suvi led">Suvi led</option>
+                                                <option value="96.5" label="Tečni azot">Tečni azot</option>
+                                            </select>
                                         </div>
-                                        <select id="vrs">
-                                            <option>Izaberite rashladno sredstvo</option>
-                                            <option value="80" label="Vodeni led">Vodeni led</option>
-                                            <option value="150" label="Suvi led">Suvi led</option>
-                                            <option value="96.5" label="Tečni azot">Tečni azot</option>
-                                        </select>
+                                        <div class="form-group col-md">
+                                            <label for="gd">Godišnje doba</label>
+                                            <select id="gd">
+                                                <option>Izaberite godišnje doba</option>
+                                                <option value="0.06" label="Ljeto">Ljeto</option>
+                                                <option value="0.01" label="Zima">Zima</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md">
+                                            <label for="ts">Spoljna (vanjska) temperatura [&#8451;]</label>
+                                            <!-- <div class="input-group-append">
+                                                <input type="number" id="tsOutput" class="input-group-text p-1" readonly
+                                                    size="3" maxlength="3" style="width: 48px;">
+                                            </div> -->
+                                            <!-- <input type="range" id="ts" oninput="tsOutput.value = ts.value" value="0"> -->
+                                            <input type="number" id="ts" value="">
+                                        </div>
                                     </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span>Godišnje doba</span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md">
+                                            <label for="str">Vrsta namirnice</label>
+                                            <select id="str">
+                                                <option>Izaberite namirnicu</option>
+                                                <option value="0.92" label="Svježe voće i povrće">Svježe voće i
+                                                    povrće
+                                                </option>
+                                                <option value="0.82" label="Riba">Riba</option>
+                                                <option value="0.80" label="Zaklana živina, margarin">Zaklana
+                                                    živina,
+                                                    margarin</option>
+                                                <option value="0.76" label="Jaja">Jaja</option>
+                                                <option value="0.64" label="Sir">Sir</option>
+                                                <option value="0.40" label="Ulje">Ulje</option>
+                                            </select>
                                         </div>
-                                        <select id="gd">
-                                            <option>Izaberite godišnje doba</option>
-                                            <option value="0.06" label="Ljeto">Ljeto</option>
-                                            <option value="0.01" label="Zima">Zima</option>
-                                        </select>
+                                        <div class="form-group col-md">
+                                            <label for="mr">Masa robe [kg]</label>
+                                            <input type="number" id="mr" value="">
+                                        </div>
+                                        <div class="form-group col-md">
+                                            <label for="tpr">Temperatura proizvoda [&#8451;]</label>
+                                            <!-- <div class="input-group-append">
+                                                <input type="number" id="tprOutput" class="input-group-text p-1"
+                                                    readonly size="3" maxlength="3" style="width: 48px;">
+                                            </div> -->
+                                            <!-- <input type="range" id="tpr" oninput="tprOutput.value = tpr.value" value="0"> -->
+                                            <input type="number" id="tpr" value="">
+                                        </div>
                                     </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span>Masa robe [kg]</span>
-                                        </div>
-                                        <input type="number" id="mr" value="">
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span>Trajanje prevoza u časovima [h]</span>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="tp">Trajanje prevoza u časovima [h]</label>
                                         <input type="number" id="tp" value="">
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span>Spoljna (vanjska) temperatura [&#8451;]</span>
-                                        </div>
-                                        <!-- <div class="input-group-append">
-                                            <input type="number" id="tsOutput" class="input-group-text p-1" readonly size="3"
-                                                maxlength="3" style="width: 48px;">
-                                        </div> -->
-                                        <!-- <input type="range" id="ts" oninput="tsOutput.value = ts.value" value="0"> -->
-                                        <input type="number" id="ts" value="">
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span>Temperatura proizvoda [&#8451;]</span>
-                                        </div>
-                                        <!-- <div class="input-group-append">
-                                            <input type="number" id="tprOutput" class="input-group-text p-1" readonly size="3"
-                                                maxlength="3" style="width: 48px;">
-                                        </div> -->
-                                        <!-- <input type="range" id="tpr" oninput="tprOutput.value = tpr.value" value="0"> -->
-                                        <input type="number" id="tpr" value="">
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span>Vrsta namirnice</span>
-                                        </div>
-                                        <select id="str">
-                                            <option>Izaberite namirnicu</option>
-                                            <option value="0.92" label="Svježe voće i povrće">Svježe voće i povrće
-                                            </option>
-                                            <option value="0.82" label="Riba">Riba</option>
-                                            <option value="0.80" label="Zaklana živina, margarin">Zaklana živina,
-                                                margarin</option>
-                                            <option value="0.76" label="Jaja">Jaja</option>
-                                            <option value="0.64" label="Sir">Sir</option>
-                                            <option value="0.40" label="Ulje">Ulje</option>
-                                        </select>
                                     </div>
                                     <div class="float-right">
                                         <button class="btn btn-primary">Izračunaj</button>
