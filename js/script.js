@@ -88,8 +88,8 @@ $(document).ready(function () {
             var l = +q11.toFixed(0) + +q22.toFixed(0) + +q33.toFixed(0) + +q43.toFixed(0);
 
             if (e >= 20 && b == 0.06) {
-                lu = l * b;
-                l1 = l + lu;
+               var lu = l * b;
+               var l1 = l + lu;
                 $("#rezultat6").text("Potrebna količina rashladnog sredstva, koja je uvećana za 6% u ljetnim mjesecima, iznosi " + l1.toFixed(0) + "[kg].").addClass("mb-sm-1");
             }
 
