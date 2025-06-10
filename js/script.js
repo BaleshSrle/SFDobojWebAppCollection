@@ -15,7 +15,10 @@ $(document).ready(function () {
         $(this).parent("div.card-header").addClass("py-2");
         $(this).children("button").addClass("btn btn-link btn-block text-left").attr({ "type": "button", "data-toggle": "collapse" });
     }).addClass("mb-0");
-    $("div[id^='collapse']").attr("data-parent", "#accordionApp");
+    //$("div[id^='collapse']").attr("data-parent", "#accordionApp");
+    $("div.collapse").each(function () {
+        $(this).attr({ "id": $("h2 > button").attr("data-target").replace("#", ""), "aria-labelledby": $("div.card-header").attr("id") });
+    }).attr("data-parent", "#accordionApp");
     $("div#collapseTransportProduce > div.card-body div.col-sm-6:last").append($("<p></p>").attr("id", "rezultat"), $("<p></p>").attr("id", "rezultat2"), $("<p></p>").attr("id", "rezultat3"), $("<p></p>").attr("id", "rezultat4"), $("<p></p>").attr("id", "rezultat5"), $("<p></p>").attr("id", "rezultat6"));
     $("div#collapseADR > div.card-body").append($("<h5></h5>").addClass("pt-3").text("Značenje identifikacionog broja opasnosti"), $("<p></p>").addClass("card-text"), $("<p></p>").addClass("text-muted mb-0").html("&#42;&nbsp;Voda se smije koristiti samo uz odobrenje stručnjaka.<br>Neke opasne materije burno reaguju u kontaktu sa vodom &#40;od ispuštanja otrovnih gasova do samozapaljenja&#41;, zato je potrebno pažljivo rukovanje sa vodom."));
     $("div.card-body:eq(0)").each(function () {
@@ -40,6 +43,9 @@ $(document).ready(function () {
         $(this).filter("#mr, #tp").attr({ "min": "1", "skip": "1" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni cijeli broj.' });
         $(this).filter("#ts, #tpr").attr({ "min": "-50", "max": "50", "step": "1", "pattern": "-?[0-9]{2}" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni ili negativni cijeli broj.' });
     }).attr("inputmode", "numeric");
+    $("button[data-toggle='collapse']").each(function () {
+        $(this).attr("aria-controls", $(this).attr("data-target").replace("#", ""));
+    });
     $("button.btn-primary").on("click", function () {
         var a = $("#vrs").val();
         var b = $("#gd").val();
@@ -88,8 +94,8 @@ $(document).ready(function () {
             var l = +q11.toFixed(0) + +q22.toFixed(0) + +q33.toFixed(0) + +q43.toFixed(0);
 
             if (e >= 20 && b == 0.06) {
-               var lu = l * b;
-               var l1 = l + lu;
+                var lu = l * b;
+                var l1 = l + lu;
                 $("#rezultat6").text("Potrebna količina rashladnog sredstva, koja je uvećana za 6% u ljetnim mjesecima, iznosi " + l1.toFixed(0) + "[kg].").addClass("mb-sm-1");
             }
 
