@@ -32,8 +32,8 @@ $(document).ready(function () {
     $("div.alert:eq(0)").addClass("alert-primary").append($("<h4></h4>").addClass("alert-heading").text("Napomena"), $("<p></p>").addClass("mb-0").html("Ova kolekcija aplikacija je namjenjena za sve korisnike iz<span class='fi fi-rs align-middle mx-1' title='Srbija'></span>,<span class='fi fi-me align-middle mx-1' title='Crna Gora'></span>,<span class='fi fi-ba align-middle mx-1' title='Bosna i Hercegovina'></span>i<span class='fi fi-hr align-middle mx-1' title='Hrvatska'></span>."));
     $("div.alert:eq(1)").addClass("alert-info").append($("<h4></h4>").addClass("alert-heading").text("Info"), $("<p></p>").addClass("mb-0").html("Podaci za ovu web aplikaciju su iskorišteni iz skripte <strong>Transport opasnih materija - ADR 2007</strong> čiji su autori Mr. Velibor Peulić, Radovan Višković i Željko Matoc"));
     $("article").not(":first").prepend($("<hr>").addClass("my-2"));
-    $("figure").addClass("figure text-center").append($("<img>").attr({ "src": "https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg", "alt": "ADR Listica" }).addClass("figure-img img-fluid my-n3").css("max-height", "200px"), $("<figcaption></figcaption>").addClass("figure-caption text-center font-italic").text("Primjer naranžastog obilježja sa brojem za obilježavanje opasnosti (HIN) i UN brojem")).parent("div").addClass("d-flex justify-content-center");
-    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img src='https://img.shields.io/github/v/release/twbs/bootstrap?filter=v4.*&logo=bootstrap&logoColor=white&label=Bootstrap&color=7952b3' class='align-middle px-1' alt='Bootstrap Badge'>,<img src='https://img.shields.io/github/v/release/jquery/jquery?filter=3.*&logo=jquery&logoColor=white&label=jQuery&color=0769ad' class='align-middle px-1' alt='jQuery Badge'>preko<img src='https://img.shields.io/badge/jsDelivr-e84d3d?logo=jsdelivr&logoColor=white&labelColor=555555' class='align-middle px-1' alt='jsDelivr Badge'>CDN servera i hostovan je na<img src='https://img.shields.io/badge/by%20GitHub-181717?logo=githubpages&logoColor=white&logoSize=auto&labelColor=222222' class='align-middle px-1' alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<object data='https://img.shields.io/badge/GitHub-181717?logo=github&logoSize=auto&labelColor=555555&link=https%3A%2F%2Fgithub.com%2FBaleshSrle%2FSFDobojWebAppCollection' class='align-middle px-1'></object>.<br>&copy; 2019 - " + new Date().getFullYear() + "."))
+    $("figure:eq(0)").addClass("figure text-center").append($("<img>").attr({ "src": "https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg", "alt": "ADR Listica" }).addClass("figure-img img-fluid my-n3").css("max-height", "200px"), $("<figcaption></figcaption>").addClass("figure-caption text-center font-italic").text("Primjer naranžastog obilježja sa brojem za obilježavanje opasnosti (HIN) i UN brojem")).parent("div").addClass("d-flex justify-content-center");
+    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img src='https://img.shields.io/github/v/release/twbs/bootstrap?filter=v4.*&logo=bootstrap&logoColor=white&label=Bootstrap&color=7952b3' class='align-middle px-1' alt='Bootstrap Badge'>,<img src='https://img.shields.io/github/v/release/jquery/jquery?filter=3.*&logo=jquery&logoColor=white&label=jQuery&color=0769ad' class='align-middle px-1' alt='jQuery Badge'>,<img src='https://img.shields.io/github/v/release/chartjs/Chart.js?filter=v2.*&logo=chartdotjs&logoColor=white&label=Chart.js&color=ff6384' class='align-middle px-1' alt='Chart.js Badge'>preko<img src='https://img.shields.io/badge/jsDelivr-e84d3d?logo=jsdelivr&logoColor=white&labelColor=555555' class='align-middle px-1' alt='jsDelivr Badge'>CDN servera i hostovan je na<img src='https://img.shields.io/badge/by%20GitHub-181717?logo=githubpages&logoColor=white&logoSize=auto&labelColor=222222' class='align-middle px-1' alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<object data='https://img.shields.io/badge/GitHub-181717?logo=github&logoSize=auto&labelColor=555555&link=https%3A%2F%2Fgithub.com%2FBaleshSrle%2FSFDobojWebAppCollection' class='align-middle px-1'></object>.<br>&copy; 2019 - " + new Date().getFullYear() + "."))
     /* $("div.input-group").each(function () {
         $(this).children("div").addClass("input-group-prepend");
     }).addClass("mb-3"); */
@@ -41,10 +41,16 @@ $(document).ready(function () {
     $("select, input").addClass("form-control").attr("required", true);
     $("select > option:first-child").attr({ "selected": true, "disabled": true });
     $("input[type='number']").each(function () {
+        //$(this).not(":lt(7):gt(3)").attr("inputmode", "numeric");
+        //$(this).slice(4, 7).attr("inputmode", "decimal");
+        $(this).filter("#ts, #mr, #tpr, #tp, #P1x, #P1y, #P2x, #P2y, #P3x, #P3y, #Sx, #Sy").attr("inputmode", "numeric");
+        $(this).filter("#Q1, #Q2, #Q3").attr("inputmode", "decimal");
         $(this).filter("#mr, #tp").attr({ "min": "1", "skip": "1" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni cijeli broj.' });
         $(this).filter("#ts, #tpr").attr({ "min": "-50", "max": "50", "step": "1", "pattern": "-?[0-9]{2}" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni ili negativni cijeli broj.' });
-    }).attr("inputmode", "numeric");
-
+    });
+    $("table.table").addClass("table-sm text-center").wrap($("<div></div>").addClass("table-responsive"));
+    $("table.table > caption").addClass("text-center");
+    $("td").prev("th").addClass("align-middle");
     $("button.btn-primary").on("click", function () {
         var a = $("#vrs").val();
         var b = $("#gd").val();
@@ -276,5 +282,80 @@ $(document).ready(function () {
         }
         return $("p.card-text").last().addClass("my-3").html(textADRhin);
     }).addClass("form-control");
+    $("canvas#myChart").addClass("w-100 mx-auto").css("max-width", "700px");
+    $("form:eq(2)").on("input", function () {
+        let Q1 = Number($("input#Q1").val());
+        let Q2 = Number($("input#Q2").val());
+        let Q3 = Number($("input#Q3").val());
+        let P1x = Number($("input#P1x").val());
+        let P2x = Number($("input#P2x").val());
+        let P3x = Number($("input#P3x").val());
+        let Sx = Number($("input#Sx").val());
+        let P1y = Number($("input#P1y").val());
+        let P2y = Number($("input#P2y").val());
+        let P3y = Number($("input#P3y").val());
+        let Sy = Number($("input#Sy").val());
+        let Sox = ((P1x * Q1) + (P2x * Q2) + (P3x * Q3)) / (Q1 + Q2 + Q3);
+        $("output[name='Sox']").text(Sox.toFixed());
+        let Soy = ((P1y * Q1) + (P2y * Q2) + (P3y * Q3)) / (Q1 + Q2 + Q3);
+        $("output[name='Soy']").text(Soy.toFixed());
+        let r1 = Math.sqrt(((P1x - Sx) ** 2) + ((P1y - Sy) ** 2));
+        $("output[name='r1']").text(r1.toFixed(2));
+        let r2 = Math.sqrt(((P2x - Sx) ** 2) + ((P2y - Sy) ** 2));
+        $("output[name='r2']").text(r2.toFixed(2));
+        let r3 = Math.sqrt(((P3x - Sx) ** 2) + ((P3y - Sy) ** 2));
+        $("output[name='r3']").text(r3.toFixed(2));
+        let ro1 = Math.sqrt(((P1x - Sox) ** 2) + ((P1y - Soy) ** 2));
+        $("output[name='ro1']").text(ro1.toFixed(2));
+        let ro2 = Math.sqrt(((P2x - Sox) ** 2) + ((P2y - Soy) ** 2));
+        $("output[name='ro2']").text(ro2.toFixed(2));
+        let ro3 = Math.sqrt(((P3x - Sox) ** 2) + ((P3y - Soy) ** 2));
+        $("output[name='ro3']").text(ro3.toFixed(2));
+        let A1 = r1 * Q1;
+        $("output[name='A1']").text(A1.toFixed(2));
+        let A2 = r2 * Q2;
+        $("output[name='A2']").text(A2.toFixed(2));
+        let A3 = r3 * Q3;
+        $("output[name='A3']").text(A3.toFixed(2));
+        let As = A1 + A2 + A3;
+        $("output[name='As']").text(As.toFixed(2));
+        let Ao1 = ro1 * Q1;
+        $("output[name='Ao1']").text(Ao1.toFixed(2));
+        let Ao2 = ro2 * Q2;
+        $("output[name='Ao2']").text(Ao2.toFixed(2));
+        let Ao3 = ro3 * Q3;
+        $("output[name='Ao3']").text(Ao3.toFixed(2));
+        let Ao = Ao1 + Ao2 + Ao3;
+        $("output[name='Ao']").text(Ao.toFixed(2));
+        let rezTransRada = As - Ao;
+        $("output[name='razlikaTranspRada']").text(rezTransRada.toFixed(2));
+
+        const xyValues = [
+            { x: P1x, y: P1y },
+            { x: P2x, y: P2y },
+            { x: P3x, y: P3y },
+            { x: Sx, y: Sy },
+            { x: Sox, y: Soy }
+        ];
+        new Chart("myChart", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    //pointBackgroundColor: "rgb(0,0,255)",
+                    pointBackgroundColor: ["#0000ff", "#0000ff", "#0000ff", "#000000", "#ff0000"],
+                    data: xyValues
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: { display: false },
+                scales: {
+                    xAxes: [{ ticks: { min: 0, max: 180 } }],
+                    yAxes: [{ ticks: { min: 0, max: 140 } }],
+                }
+            }
+        });
+    });
     document.normalize();
 });
