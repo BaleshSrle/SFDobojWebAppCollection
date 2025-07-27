@@ -1,0 +1,16 @@
+name: Purge jsDelivr cache
+
+on: push
+jobs:
+  purge-jsdelivr-cache:
+    runs-on: ubuntu-latest
+    steps:
+      # You may pin to the exact commit or the version.
+      # uses: gacts/purge-jsdelivr-cache@8d92aea944f1a3e8ad70505379e1a8ac72d56b73
+      - uses: gacts/purge-jsdelivr-cache@v1.1.2
+        with:
+          # URLs for the cache purging (string|list)
+          url: |
+            https://cdn.jsdelivr.net/gh/BaleshSrle/SFDobojWebAppCollection/js/script.min.js
+          # Retry attempts (on the request failing) (uint)
+          # attempts: # optional, default is 3
