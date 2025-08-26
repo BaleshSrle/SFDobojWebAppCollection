@@ -35,7 +35,7 @@ $(document).ready(function () {
     $("div.alert:eq(1)").addClass("alert-info").append($("<h4></h4>").addClass("alert-heading").text("Info"), $("<p></p>").addClass("mb-0").html("Podaci za ovu web aplikaciju su iskorišteni iz skripte <strong>Transport opasnih materija - ADR 2007</strong> čiji su autori Prof. dr Velibor Peulić, dr Radovan Višković, docent i Željko Matoc"));
     $("article").not(":first").prepend($("<hr>").addClass("my-2"));
     $("figure:eq(0)").addClass("figure text-center").append($("<img>").attr({ "src": "https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg", "alt": "ADR Listica" }).addClass("figure-img img-fluid my-n3").css("max-height", "200px"), $("<figcaption></figcaption>").addClass("figure-caption text-center font-italic").text("Primjer naranžastog obilježja sa brojem za obilježavanje opasnosti (HIN) i UN brojem")).parent("div").addClass("d-flex justify-content-center");
-    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img alt='Bootstrap Badge'>,<img alt='jQuery Badge'>,<img alt='Chart.js Badge'>preko<img alt='jsDelivr Badge'>CDN servera i hostovan je na<img src='' alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<object data='https://img.shields.io/badge/GitHub-181717?logo=github&logoSize=auto&labelColor=555555&link=https%3A%2F%2Fgithub.com%2FBaleshSrle%2FSFDobojWebAppCollection' class='align-middle px-1'></object>.<br>&copy; 2019 - " + new Date().getFullYear() + "."));
+    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img alt='Bootstrap Badge'>,<img alt='jQuery Badge'>,<img alt='Chart.js Badge'>preko<img alt='jsDelivr Badge'>CDN servera i hostovan je na<img alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<a href='https://github.com/BaleshSrle/SFDobojWebAppCollection' hreflang='en' target='_blank'><img alt='Static Badge'></a>.<br>&copy; 2019 - " + new Date().getFullYear() + "."));
     images[1].src = "https://img.shields.io/github/v/release/twbs/bootstrap?filter=v4.*&logo=bootstrap&logoColor=white&label=Bootstrap&color=7952b3";
     images[1].onerror = function () { this.src = "https://badgen.net/jsdelivr/v/npm/bootstrap@4?color=7952b3&label=Bootstrap"; }
     images[2].src = "https://img.shields.io/github/v/release/jquery/jquery?filter=3.*&logo=jquery&logoColor=white&label=jQuery&color=0769ad";
@@ -45,9 +45,11 @@ $(document).ready(function () {
     images[4].src = "https://img.shields.io/badge/jsDelivr-e84d3d?logo=jsdelivr&logoColor=white&labelColor=555555";
     images[4].onerror = function () { this.src = "https://badgen.net/badge/icon/jsDelivr?&color=e84d3d&icon=jsdelivr&label"; }
     images[5].src = "https://img.shields.io/badge/by%20GitHub-181717?logo=githubpages&logoColor=white&logoSize=auto&labelColor=222222";
+    images[6].src = "https://img.shields.io/badge/GitHub-181717?logo=github&logoSize=auto&labelColor=555555";
+    images[6].onerror = function () { "https://badgen.net/badge/icon/GitHub?color=181717&icon=github&label"; }
     scripts[0].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"; }
-    scripts[1].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"; }   
-    scripts[2].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"; }   
+    scripts[1].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"; }
+    scripts[2].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"; }
     $("img").slice(1).addClass("align-middle px-1");
     /* $("div.input-group").each(function () {
         $(this).children("div").addClass("input-group-prepend");
