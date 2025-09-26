@@ -10,6 +10,7 @@ $(document).ready(function () {
         $(this).children("script:lt(2)").attr("crossorigin", "anonymous");
     });
     $("meta:last").after($("<link>").attr({ "rel": "stylesheet", "href": "https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css", "crossorigin": "anomymous" }).on("error", function () { this.href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" }));
+
     //$("body").css("background", "url('https://upload.wikimedia.org/wikipedia/sr/6/68/Saobra%C4%87ajni_fakultet_Doboj.png') right bottom / 200px no-repeat fixed padding-box padding-box");
     $("body").css("background", "url('https://sf.ues.rs.ba/cir/wp-content/uploads/2024/04/LogoPng.png') right bottom / 200px no-repeat fixed padding-box padding-box");
     $("div.container-fluid").addClass("p-3")
@@ -47,7 +48,6 @@ $(document).ready(function () {
     images[5].src = "https://img.shields.io/badge/by%20GitHub-181717?logo=githubpages&logoColor=white&logoSize=auto&labelColor=222222";
     images[6].src = "https://img.shields.io/badge/GitHub-181717?logo=github&logoSize=auto&labelColor=555555";
     images[6].onerror = function () { "https://badgen.net/badge/icon/GitHub?color=181717&icon=github&label"; }
-    scripts[0].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"; }
     scripts[1].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"; }
     scripts[2].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"; }
     $("img").slice(1).addClass("align-middle px-1");
@@ -60,22 +60,22 @@ $(document).ready(function () {
     $("input[type='number']").each(function () {
         //$(this).not(":lt(7):gt(3)").attr("inputmode", "numeric");
         //$(this).slice(4, 7).attr("inputmode", "decimal");
-        $(this).filter("#ts, #mr, #tpr, #tp, #P1x, #P1y, #P2x, #P2y, #P3x, #P3y, #Sx, #Sy").attr("inputmode", "numeric");
+        $(this).filter("#OutsideTemp, #ProduceWeigh, #ProduceTemp, #TransportDuration, #P1x, #P1y, #P2x, #P2y, #P3x, #P3y, #Sx, #Sy").attr("inputmode", "numeric");
         $(this).filter("#Q1, #Q2, #Q3").attr("inputmode", "decimal");
-        $(this).filter("#mr, #tp").attr({ "min": "1", "skip": "1" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni cijeli broj.' });
-        $(this).filter("#ts, #tpr").attr({ "min": "-50", "max": "50", "step": "1", "pattern": "-?[0-9]{2}" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni ili negativni cijeli broj.' });
+        $(this).filter("#ProduceWeigh, #TransportDuration").attr({ "min": "1", "skip": "1" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni cijeli broj.' });
+        $(this).filter("#OutsideTemp, #ProduceTemp").attr({ "min": "-50", "max": "50", "step": "1", "pattern": "-?[0-9]{2}" }).parent("div.form-group").tooltip({ placement: 'top', title: 'U ovo polje se unosi pozitivni ili negativni cijeli broj.' });
     });
     $("table.table").addClass("table-sm text-center").wrap($("<div></div>").addClass("table-responsive"));
     $("table.table > caption").addClass("text-center");
     $("td").prev("th").addClass("align-middle");
     $("button.btn-primary").on("click", function () {
-        var a = $("#vrs").val();
-        var b = $("#gd").val();
-        var c = Number($("#mr").val());
-        var d = Number($("#tp").val());
-        var e = Number($("#ts").val());
-        var f = Number($("#tpr").val());
-        var g = $("#str").val();
+        var a = $("#RefrigerantType").val();
+        var b = $("#Season").val();
+        var c = Number($("#ProduceWeight").val());
+        var d = Number($("#TransportDuration").val());
+        var e = Number($("#OutsideTemp").val());
+        var f = Number($("#ProduceTemp").val());
+        var g = $("#ProduceType").val();
 
         if (c <= 0 || !Number.isInteger(c) || d <= 0 || !Number.isInteger(d) || e <= "-51" || e >= "51" || !Number.isInteger(e) || f <= "-51" || f >= "51" || !Number.isInteger(f)) {
             alert("Unos nije dozvoljen.\nMolimo vas da pažljivo pročitate uputstvo.");
@@ -96,26 +96,30 @@ $(document).ready(function () {
             var q3 = 115 * 0.32 * j * d;
             var q33 = q3 / a
 
-            if (e > 5 && e <= 15) {
-                var q41 = c * 200 * d;
-            } else if (e >= 16 && e <= 30) {
-                var q41 = c * 2500 * d;
+            if (f <= -7 && f >= -18) {
+                var q4 = 0;
             } else {
-                var q41 = c * 6000 * d;
+                if (f >= 4 && f < 15) {
+                    var q41 = (c * 200 * d) / 24000;
+                    var q4 = q41 / a;
+                } else if (f >= 15 && f < 30) {
+                    var q41 = (c * 2500 * d) / 24000;
+                    var q4 = q41 / a;
+                } else {
+                    var q41 = (c * 6000 * d) / 24000;
+                    var q4 = q41 / a;
+                }
             }
 
-            var q42 = 1000 * 24;
-            var q4 = q41 / q42;
-
-            if (f <= -7 && f >= -18) {
+            /* if (f <= -7 && f >= -18) {
                 var q43 = 0;
             } else {
                 var q43 = q4 / a;
-            }
+            } */
 
-            var l = +q11.toFixed(0) + +q22.toFixed(0) + +q33.toFixed(0) + +q43.toFixed(0);
+            var l = +q11.toFixed(0) + +q22.toFixed(0) + +q33.toFixed(0) + +q4.toFixed(0);
 
-            if (e >= 20 && b == 0.06) {
+            if (e >= 20 && b === "0.06") {
                 var lu = l * b;
                 var l1 = l + lu;
                 $("#rezultat6").text("Potrebna količina rashladnog sredstva, koja je uvećana za 6% u ljetnim mjesecima, iznosi " + l1.toFixed(0) + "[kg].").addClass("mb-sm-1");
@@ -123,7 +127,7 @@ $(document).ready(function () {
 
             $("#rezultat").text("Potrebna količina rashadnog sredstva za hlađenje vagona hladnjače je " + q11.toFixed(0) + " [kg].").addClass("mb-sm-1");
 
-            if (q22 != 0) {
+            if (q22 !== 0) {
                 $("#rezultat2").text("Potrebna količina rashadnog sredstva za hlađenje robe je " + q22.toFixed(0) + " [kg].").addClass("mb-sm-1");
             } else {
                 $("#rezultat2").text("Nije potrebno računari koliko je potrebno rashladnog sredstva za hlađenje robe, jer je roba prethodno ohlađena.").addClass("mb-sm-1");
@@ -131,9 +135,9 @@ $(document).ready(function () {
 
             $("#rezultat3").text("Potrebna količina rashadnog sredstva za uticaj spoljne temperature je " + q33.toFixed(0) + " [kg].").addClass("mb-sm-1");
 
-            if (q43 != 0) {
-                $("#rezultat4").text("Potrebna količina rashadnog sredstva za uticaj disanja robe je " + q43.toFixed(0) + " [kg].").addClass("mb-sm-1");
-            } else if (q43 = 0 && f <= -19 && f >= -40) {
+            if (q4 !== 0) {
+                $("#rezultat4").text("Potrebna količina rashadnog sredstva za uticaj disanja robe je " + q4.toFixed(0) + " [kg].").addClass("mb-sm-1");
+            } else if (q4 === 0 && f <= -19 && f >= -40) {
                 $("#rezultat4").html("Nije potrebno računati potrebnu količinu rashladnog sredstva za uticaj disanja robe, jer roba u brzo smrznutom stanju &quot;ne diše&quot;.").addClass("mb-sm-1");
             } else {
                 $("#rezultat4").html("Nije potrebno računati potrebnu količinu rashladnog sredstva za uticaj disanja robe, jer roba u smrznutom stanju &quot;ne diše&quot;.").addClass("mb-sm-1");
@@ -146,153 +150,153 @@ $(document).ready(function () {
         var textADRhin;
         var a = $("#ibo").val();
 
-        if (a == 1) {
+        if (a === "1") {
             textADRhin = "Zagušljivač ili gas bez dodatne opasnosti.";
-        } else if (a == 2) {
+        } else if (a === "2") {
             textADRhin = "Pothlađeni ukapljeni gas, zagušljivač.";
-        } else if (a == 3) {
+        } else if (a === "3") {
             textADRhin = "Pothlađeni ukapljeni gas, zapaljiv.";
-        } else if (a == 4) {
+        } else if (a === "4") {
             textADRhin = "Pothlađeni ukapljeni gas, oksidirajući (pojačava vatru).";
-        } else if (a == 5) {
+        } else if (a === "5") {
             textADRhin = "Zapaljivi gas.";
-        } else if (a == 6) {
+        } else if (a === "6") {
             textADRhin = "Zapaljivi gas, koji može spontano dovesti do burne reakcije.";
-        } else if (a == 7) {
+        } else if (a === "7") {
             textADRhin = "Oksidirajući (pojačava vatru).";
-        } else if (a == 8) {
+        } else if (a === "8") {
             textADRhin = "Otrovni gas.";
-        } else if (a == 9) {
+        } else if (a === "9") {
             textADRhin = "Otrovni gas, zapaljiv.";
-        } else if (a == 10) {
+        } else if (a === "10") {
             textADRhin = "Otrovni gas, oksidirajući (pojačava vatru).";
-        } else if (a == 11) {
+        } else if (a === "11") {
             textADRhin = "Otrovni gas, korozivni.";
-        } else if (a == 12) {
+        } else if (a === "12") {
             textADRhin = "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), ili zapaljiva tečnost ili čvrsta materija u otopljenom stanju sa tačkom paljenja iznad 60 &#8451;, zagrijana do temperature jednake ili iznad njene tačke paljenja, ili samozagrijavajuća tečnost.";
-        } else if (a == 13) {
+        } else if (a === "13") {
             textADRhin = "Zapaljiva tečnost koja reaguje s vodom, ispuštajući zapaljive gasove.";
-        } else if (a == 14) {
+        } else if (a === "14") {
             textADRhin = "Zapaljiva tečnost koja reaguje opasno s vodom, ispuštajući zapaljive gasove.";
-        } else if (a == 15) {
+        } else if (a === "15") {
             textADRhin = "Jako zapaljiva tečnost (tačka paljenja ispod 23 &#8451;).";
-        } else if (a == 16) {
+        } else if (a === "16") {
             textADRhin = "Piroforna tečnost.";
-        } else if (a == 17) {
+        } else if (a === "17") {
             textADRhin = "Piroforna tečnost koja reaguje opasno sa vodom. *";
-        } else if (a == 18) {
+        } else if (a === "18") {
             textADRhin = "Jako zapaljiva tečnost, otrovna.";
-        } else if (a == 19) {
+        } else if (a === "19") {
             textADRhin = "Jako zapaljiva tečnost, korozivna.";
-        } else if (a == 20) {
+        } else if (a === "20") {
             textADRhin = "Jako zapaljiva tečnost, korozivna, koja reaguje opasno sa vodom. *";
-        } else if (a == 21) {
+        } else if (a === "21") {
             textADRhin = "Jako zapaljiva tečnost koja može spontano dovesti do burne reakcije.";
-        } else if (a == 22) {
+        } else if (a === "22") {
             textADRhin = "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), slabo otrovna ili samozagrijavajuća tečnost, otrovna.";
-        } else if (a == 23) {
+        } else if (a === "23") {
             textADRhin = "Zapaljiva tečnost, otrovna, reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a == 24) {
+        } else if (a === "24") {
             textADRhin = "Zapaljiva tečnost, otrovna, reagujući sa vodom, stvara zapaljive gasove. *";
-        } else if (a == 25) {
+        } else if (a === "25") {
             textADRhin = "Zapaljiva tečnost, otrovna, korozivna.";
-        } else if (a == 26) {
+        } else if (a === "26") {
             textADRhin = "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), slabo korozivna ili samozagrijavajuća tečnost, korozivna.";
-        } else if (a == 27) {
+        } else if (a === "27") {
             textADRhin = "Zapaljiva tečnost, korozivna, reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a == 28) {
+        } else if (a === "28") {
             textADRhin = "Zapaljiva tečnost, korozivna, reagujući sa vodom, stvara zapaljive gasove. *";
-        } else if (a == 29) {
+        } else if (a === "29") {
             textADRhin = "Zapaljiva tečnost, može spontano dovesti do burne reakcije.";
-        } else if (a == 30) {
+        } else if (a === "30") {
             textADRhin = "Zapaljiva čvrsta ili samoreaktivna materija, ili samozagrijavajuća materija.";
-        } else if (a == 31) {
+        } else if (a === "31") {
             textADRhin = "Čvrsta materija koja reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a == 32) {
+        } else if (a === "32") {
             textADRhin = "Zapaljiva čvrsta materija koja reaguje opasno s vodom, ispuštajući zapaljive gasove. *";
-        } else if (a == 33) {
+        } else if (a === "33") {
             textADRhin = "Spontano zapaljiva (piroforna) čvrsta materija.";
-        } else if (a == 34) {
+        } else if (a === "34") {
             textADRhin = "Zapaljiva čvrsta materija, u otopljenom stanju pri povišenoj temperaturi.";
-        } else if (a == 35) {
+        } else if (a === "35") {
             textADRhin = "Zapaljiva čvrsta materija, otrovna, u otopljenom stanju, pri povišenoj temperaturi.";
-        } else if (a == 36) {
+        } else if (a === "36") {
             textADRhin = "Zapaljiva ili samozagrijavajuća čvrsta materija, otrovna.";
-        } else if (a == 37) {
+        } else if (a === "37") {
             textADRhin = "Otrovna čvrsta materija koja reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a == 38) {
+        } else if (a === "38") {
             textADRhin = "Čvrsta materija koja reaguje opasno sa vodom, stvara otrovne gasove. *";
-        } else if (a == 39) {
+        } else if (a === "39") {
             textADRhin = "Zapaljiva ili samozagrijavajuća čvrsta materija, korozivna.";
-        } else if (a == 40) {
+        } else if (a === "40") {
             textADRhin = "Korozivna čvrsta materija koja reaguje sa vodom, stvara zapaljive gasove.";
-        } else if (a == 41) {
+        } else if (a === "41") {
             textADRhin = "Korozivna materija koja reaguje opasno sa vodom, stvara korozivne gasove. *";
-        } else if (a == 42) {
+        } else if (a === "42") {
             textADRhin = "Oksidirajuća materija (pojačava vatru).";
-        } else if (a == 43) {
+        } else if (a === "43") {
             textADRhin = "Zapaljivi organski peroksid.";
-        } else if (a == 44) {
+        } else if (a === "44") {
             textADRhin = "Jako oksidirajuća materija (pojačava vatru).";
-        } else if (a == 45) {
+        } else if (a === "45") {
             textADRhin = "Jako oksidirajuća materija, otrovna (pojačava vatru).";
-        } else if (a == 46) {
+        } else if (a === "46") {
             textADRhin = "Jako oksidirajuća materija, korozivna (pojačava vatru).";
-        } else if (a == 47) {
+        } else if (a === "47") {
             textADRhin = "Jako oksidirajuća materija, može spontano burno reagovati (pojačava vatru).";
-        } else if (a == 48) {
+        } else if (a === "48") {
             textADRhin = "Oksidirajuća materija, otrovna (pojačava vatru).";
-        } else if (a == 49) {
+        } else if (a === "49") {
             textADRhin = "Oksidirajuća materija, otrovna, korozivna (pojačava vatru).";
-        } else if (a == 50) {
+        } else if (a === "50") {
             textADRhin = "Oksidirajuća materija, korozivna (pojačava vatru).";
-        } else if (a == 51) {
+        } else if (a === "51") {
             textADRhin = "Oksidirajuća materija, može spontano dovesti do burne reakcije (pojačava vatru).";
-        } else if (a == 52) {
+        } else if (a === "52") {
             textADRhin = "Otrovna ili slabo otrovna materija.";
-        } else if (a == 53) {
+        } else if (a === "53") {
             textADRhin = "Zarazna materija.";
-        } else if (a == 54) {
+        } else if (a === "54") {
             textADRhin = "Otrovna tečnost, reaguje sa vodom, stvara zapaljive gasove.";
-        } else if (a == 55) {
+        } else if (a === "55") {
             textADRhin = "Otrovna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo).";
-        } else if (a == 56) {
+        } else if (a === "56") {
             textADRhin = "Otrovna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), korozivna.";
-        } else if (a == 57) {
+        } else if (a === "57") {
             textADRhin = "Otrovna materija, zapaljiva (tačka paljenja ne iznad 60 &#8451;, uključivo), može spontano dovesti do burne reaklcije.";
-        } else if (a == 58) {
+        } else if (a === "58") {
             textADRhin = "Korozivna ili slabo korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), može spontano dovesti do burne reakcije.";
-        } else if (a == 59) {
+        } else if (a === "59") {
             textADRhin = "Korozivna ili slabo korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), može spontano burno reagovati i koja reaguje opasno sa vodom. *";
-        } else if (a == 60) {
+        } else if (a === "60") {
             textADRhin = "Korozivna čvrsta materija, zapaljiva ili samozagrijavajća.";
-        } else if (a == 61) {
+        } else if (a === "61") {
             textADRhin = "Korozivna čvrsta materija, reaguje sa vodom, stvara zapaljive gasove.";
-        } else if (a == 62) {
+        } else if (a === "62") {
             textADRhin = "Korozivna ili slabo korozivna materija, oksidirajuća (pojačava vatru).";
-        } else if (a == 63) {
+        } else if (a === "63") {
             textADRhin = "Korozivna ili slabo korozivna materija, oksidirajuća (pojačava vatru), i otrovna.";
-        } else if (a == 64) {
+        } else if (a === "64") {
             textADRhin = "Korozivna ili slabo korozivna materija, otrovna.";
-        } else if (a == 65) {
+        } else if (a === "65") {
             textADRhin = "Jako korozivna materija.";
-        } else if (a == 66) {
+        } else if (a === "66") {
             textADRhin = "Jako korozivna materija, reaguje opasno sa vodom. *";
-        } else if (a == 67) {
+        } else if (a === "67") {
             textADRhin = "Jako korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo).";
-        } else if (a == 68) {
+        } else if (a === "68") {
             textADRhin = "Jako korozivna čvrsta materija, zapaljiva ili samozagrijavajuća.";
-        } else if (a == 69) {
+        } else if (a === "69") {
             textADRhin = "Jako korozivna materija, oksidirajuća (pojačava vatru).";
-        } else if (a == 70) {
+        } else if (a === "70") {
             textADRhin = "Jako korozivna materija, otrovna.";
-        } else if (a == 71) {
+        } else if (a === "71") {
             textADRhin = "Jako korozivna materija, otrovna, reaguje opasno sa vodom. *";
-        } else if (a == 72) {
+        } else if (a === "72") {
             textADRhin = "Korozivna ili slabo korozivna materija, može spontano dovesti do burne reakcije.";
-        } else if (a == 73) {
+        } else if (a === "73") {
             textADRhin = "Materija opasna za okolinu; razne opasne materije.";
-        } else if (a == 74) {
+        } else if (a === "74") {
             textADRhin = "Razne opasne materije, transportuju se na povišenoj temperaturi.";
         } else {
             textADRhin = "";

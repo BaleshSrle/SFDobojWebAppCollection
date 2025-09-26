@@ -123,8 +123,8 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md">
-                                            <label for="vrs">Vrsta rashladnog sredstva</label>
-                                            <select id="vrs">
+                                            <label for="RefrigerantType">Vrsta rashladnog sredstva</label>
+                                            <select id="RefrigerantType">
                                                 <option>Izaberite rashladno sredstvo</option>
                                                 <option value="80" label="Vodeni led">Vodeni led</option>
                                                 <option value="150" label="Suvi led">Suvi led</option>
@@ -132,27 +132,27 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md">
-                                            <label for="gd">Godišnje doba</label>
-                                            <select id="gd">
+                                            <label for="Season">Godišnje doba</label>
+                                            <select id="Season">
                                                 <option>Izaberite godišnje doba</option>
                                                 <option value="0.06" label="Ljeto">Ljeto</option>
                                                 <option value="0.01" label="Zima">Zima</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md">
-                                            <label for="ts">Spoljna (vanjska) temperatura [&#8451;]</label>
+                                            <label for="OutsideTemp">Spoljna (vanjska) temperatura [&#8451;]</label>
                                             <!-- <div class="input-group-append">
                                                 <input type="number" id="tsOutput" class="input-group-text p-1" readonly
                                                     size="3" maxlength="3" style="width: 48px;">
                                             </div> -->
                                             <!-- <input type="range" id="ts" oninput="tsOutput.value = ts.value" value="0"> -->
-                                            <input type="number" id="ts" value="">
+                                            <input type="number" id="OutsideTemp" value="">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md">
-                                            <label for="str">Vrsta namirnice</label>
-                                            <select id="str">
+                                            <label for="ProduceType">Vrsta namirnice</label>
+                                            <select id="ProduceType">
                                                 <option>Izaberite namirnicu</option>
                                                 <option value="0.92" label="Svježe voće i povrće">Svježe voće i
                                                     povrće
@@ -167,22 +167,22 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md">
-                                            <label for="mr">Masa robe [kg]</label>
-                                            <input type="number" id="mr" value="">
+                                            <label for="ProduceWeight">Masa robe [kg]</label>
+                                            <input type="number" id="ProduceWeight" value="">
                                         </div>
                                         <div class="form-group col-md">
-                                            <label for="tpr">Temperatura proizvoda [&#8451;]</label>
+                                            <label for="ProduceTemp">Temperatura proizvoda [&#8451;]</label>
                                             <!-- <div class="input-group-append">
                                                 <input type="number" id="tprOutput" class="input-group-text p-1"
                                                     readonly size="3" maxlength="3" style="width: 48px;">
                                             </div> -->
                                             <!-- <input type="range" id="tpr" oninput="tprOutput.value = tpr.value" value="0"> -->
-                                            <input type="number" id="tpr" value="">
+                                            <input type="number" id="ProduceTemp" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tp">Trajanje prevoza u časovima [h]</label>
-                                        <input type="number" id="tp" value="">
+                                        <label for="TransportDuration">Trajanje prevoza u časovima [h]</label>
+                                        <input type="number" id="TransportDuration" value="">
                                     </div>
                                     <div class="float-right">
                                         <button class="btn btn-primary">Izračunaj</button>
@@ -515,6 +515,7 @@
         </div>
     </div>
     <script>
+        document.scripts[0].onerror = function () { this.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"; }
         $(document).ready(function () {
             $.getScript("js/script.js")
                 .done(function (script, textStatus) {

@@ -2,6 +2,8 @@
 [![Open in Visual Studio Code](https://img.shields.io/badge/Open_in_Visual_Studio_Code-007acc)](https://github.dev/BaleshSrle/SFDobojWebAppCollection)
 [![Deploy static content to Pages](https://github.com/BaleshSrle/SFDobojWebAppCollection/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/BaleshSrle/SFDobojWebAppCollection/actions/workflows/static.yml)
 [![Purge jsDelivr cache](https://github.com/BaleshSrle/SFDobojWebAppCollection/actions/workflows/purge-jsdelivr-cache.yml/badge.svg)](https://github.com/BaleshSrle/SFDobojWebAppCollection/actions/workflows/purge-jsdelivr-cache.yml)
+[![Codeac](https://static.codeac.io/badges/2-210844227.svg "Codeac")](https://app.codeac.io/github/BaleshSrle/SFDobojWebAppCollection)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9f3f321297e149738687e1257daf2bf2)](https://app.codacy.com/gh/BaleshSrle/SFDobojWebAppCollection/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fbaleshsrle.github.io%2FSFDobojWebAppCollection%2F&logo=bootstrap&logoColor=white&labelColor=7952B3)
 [![Bitly](https://img.shields.io/badge/Bitly-ee6123?&logo=bitly&logoColor=white&labelColor=555555)](https://bit.ly/4cuU243)
 
