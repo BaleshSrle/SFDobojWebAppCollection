@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f157d08ef76146e9a3d09a32c3cafeee)](https://app.codacy.com/gh/BaleshSrle/SFDobojWebAppCollection?utm_source=github.com&utm_medium=referral&utm_content=BaleshSrle/SFDobojWebAppCollection&utm_campaign=Badge_Grade)
 [![](https://data.jsdelivr.com/v1/package/gh/BaleshSrle/SFDobojWebAppCollection/badge?style=rounded)](https://www.jsdelivr.com/package/gh/BaleshSrle/SFDobojWebAppCollection)
 [![Open in Visual Studio Code](https://img.shields.io/badge/Open_in_Visual_Studio_Code-007acc)](https://github.dev/BaleshSrle/SFDobojWebAppCollection)
 [![Deploy static content to Pages](https://github.com/BaleshSrle/SFDobojWebAppCollection/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/BaleshSrle/SFDobojWebAppCollection/actions/workflows/static.yml)
