@@ -352,7 +352,7 @@ $(document).ready(() => {
         let Ao = Ao1 + Ao2 + Ao3;
         $("output[name='Ao']").text(Ao.toFixed(2));
         let rezTransRada = As - Ao;
-        $("output[name='razlikaTranspRada']").text(rezTransRada.toFixed(2));
+        $("output#razlikaTranspRada").attr("name", $("output:last").attr("id")).text(rezTransRada.toFixed(2));
 
         const xyValues = [
             { x: P1x, y: P1y },
@@ -361,6 +361,10 @@ $(document).ready(() => {
             { x: Sx, y: Sy },
             { x: Sox, y: Soy }
         ];
+        const arrayX = [P1x, P2x, P3x, Sx, Sox]; 
+        const arrayY = [P1y, P2y, P3y, Sy, Soy]; 
+        const maxX = Math.max(...arrayX);
+        const maxY = Math.max(...arrayY);
         new Chart("myChart", {
             type: "scatter",
             data: {
@@ -375,8 +379,8 @@ $(document).ready(() => {
                 responsive: true,
                 legend: { display: false },
                 scales: {
-                    xAxes: [{ ticks: { min: 0, max: 180 } }],
-                    yAxes: [{ ticks: { min: 0, max: 140 } }],
+                    xAxes: [{ ticks: { min: 0, max: maxX + 10 } }],
+                    yAxes: [{ ticks: { min: 0, max: maxY + 10 } }],
                 }
             }
         });
