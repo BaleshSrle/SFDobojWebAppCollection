@@ -36,7 +36,7 @@ $(document).ready(() => {
     $("div.alert:eq(1)").addClass("alert-info").append($("<h4></h4>").addClass("alert-heading").text("Info"), $("<p></p>").addClass("mb-0").html("Podaci za ovu web aplikaciju su iskorišteni iz skripte <strong>Transport opasnih materija - ADR 2007</strong> čiji su autori Prof. dr Velibor Peulić, dr Radovan Višković, docent i Željko Matoc"));
     $("article").not(":first").prepend($("<hr>").addClass("my-2"));
     $("figure:eq(0)").addClass("figure text-center").append($("<img>").attr({ "src": "https://api.inpart24.com/uploads/yoofp01b.nze_adr-plate.jpg", "alt": "ADR Listica" }).addClass("figure-img img-fluid my-n3").css("max-height", "200px"), $("<figcaption></figcaption>").addClass("figure-caption text-center font-italic").text("Primjer naranžastog obilježja sa brojem za obilježavanje opasnosti (HIN) i UN brojem")).parent("div").addClass("d-flex justify-content-center");
-    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img alt='Bootstrap Badge'>,<img alt='jQuery Badge'>,<img alt='Chart.js Badge'>preko<img alt='jsDelivr Badge'>CDN servera i hostovan je na<img alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<a href='https://github.com/BaleshSrle"+location.pathname+"' hreflang='en' target='_blank'><img alt='Static Badge'></a>.<br>&copy; 2019 - " + new Date().getFullYear() + "."));
+    $("div.card-footer").addClass("text-muted py-1").append($("<p></p>").addClass("mb-0 small text-center").html("Ovaj projekat koristi<img alt='Bootstrap Badge'>,<img alt='jQuery Badge'>,<img alt='Chart.js Badge'>preko<img alt='jsDelivr Badge'>CDN servera i hostovan je na<img alt='GitHub Pages Badge'>.<br>HTML kod ove stranice možete vidjeti na<a href='https://github.com/BaleshSrle" + location.pathname + "' hreflang='en' target='_blank'><img alt='Static Badge'></a>.<br>&copy; 2019 - " + new Date().getFullYear() + "."));
     images[1].src = "https://img.shields.io/github/v/release/twbs/bootstrap?filter=v4.*&logo=bootstrap&logoColor=white&label=Bootstrap&color=7952b3";
     images[1].onerror = function () { this.src = "https://badgen.net/jsdelivr/v/npm/bootstrap@4?color=7952b3&label=Bootstrap"; }
     images[2].src = "https://img.shields.io/github/v/release/jquery/jquery?filter=3.*&logo=jquery&logoColor=white&label=jQuery&color=0769ad";
@@ -149,162 +149,84 @@ $(document).ready(() => {
             $("#rezultat5").text("Potrebna količina rashladnog sredstva iznosi " + l + "[kg].").addClass("mb-sm-1");
         }
     }).attr("type", "button");
-    $("select#ibo").on("click", function prikazi(a) {
-        var textADRhin;
-        var a = $("#ibo").val();
-
-        if (a === "1") {
-            textADRhin = "Zagušljivač ili gas bez dodatne opasnosti.";
-        } else if (a === "2") {
-            textADRhin = "Pothlađeni ukapljeni gas, zagušljivač.";
-        } else if (a === "3") {
-            textADRhin = "Pothlađeni ukapljeni gas, zapaljiv.";
-        } else if (a === "4") {
-            textADRhin = "Pothlađeni ukapljeni gas, oksidirajući (pojačava vatru).";
-        } else if (a === "5") {
-            textADRhin = "Zapaljivi gas.";
-        } else if (a === "6") {
-            textADRhin = "Zapaljivi gas, koji može spontano dovesti do burne reakcije.";
-        } else if (a === "7") {
-            textADRhin = "Oksidirajući (pojačava vatru).";
-        } else if (a === "8") {
-            textADRhin = "Otrovni gas.";
-        } else if (a === "9") {
-            textADRhin = "Otrovni gas, zapaljiv.";
-        } else if (a === "10") {
-            textADRhin = "Otrovni gas, oksidirajući (pojačava vatru).";
-        } else if (a === "11") {
-            textADRhin = "Otrovni gas, korozivni.";
-        } else if (a === "12") {
-            textADRhin = "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), ili zapaljiva tečnost ili čvrsta materija u otopljenom stanju sa tačkom paljenja iznad 60 &#8451;, zagrijana do temperature jednake ili iznad njene tačke paljenja, ili samozagrijavajuća tečnost.";
-        } else if (a === "13") {
-            textADRhin = "Zapaljiva tečnost koja reaguje s vodom, ispuštajući zapaljive gasove.";
-        } else if (a === "14") {
-            textADRhin = "Zapaljiva tečnost koja reaguje opasno s vodom, ispuštajući zapaljive gasove.";
-        } else if (a === "15") {
-            textADRhin = "Jako zapaljiva tečnost (tačka paljenja ispod 23 &#8451;).";
-        } else if (a === "16") {
-            textADRhin = "Piroforna tečnost.";
-        } else if (a === "17") {
-            textADRhin = "Piroforna tečnost koja reaguje opasno sa vodom. *";
-        } else if (a === "18") {
-            textADRhin = "Jako zapaljiva tečnost, otrovna.";
-        } else if (a === "19") {
-            textADRhin = "Jako zapaljiva tečnost, korozivna.";
-        } else if (a === "20") {
-            textADRhin = "Jako zapaljiva tečnost, korozivna, koja reaguje opasno sa vodom. *";
-        } else if (a === "21") {
-            textADRhin = "Jako zapaljiva tečnost koja može spontano dovesti do burne reakcije.";
-        } else if (a === "22") {
-            textADRhin = "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), slabo otrovna ili samozagrijavajuća tečnost, otrovna.";
-        } else if (a === "23") {
-            textADRhin = "Zapaljiva tečnost, otrovna, reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a === "24") {
-            textADRhin = "Zapaljiva tečnost, otrovna, reagujući sa vodom, stvara zapaljive gasove. *";
-        } else if (a === "25") {
-            textADRhin = "Zapaljiva tečnost, otrovna, korozivna.";
-        } else if (a === "26") {
-            textADRhin = "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), slabo korozivna ili samozagrijavajuća tečnost, korozivna.";
-        } else if (a === "27") {
-            textADRhin = "Zapaljiva tečnost, korozivna, reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a === "28") {
-            textADRhin = "Zapaljiva tečnost, korozivna, reagujući sa vodom, stvara zapaljive gasove. *";
-        } else if (a === "29") {
-            textADRhin = "Zapaljiva tečnost, može spontano dovesti do burne reakcije.";
-        } else if (a === "30") {
-            textADRhin = "Zapaljiva čvrsta ili samoreaktivna materija, ili samozagrijavajuća materija.";
-        } else if (a === "31") {
-            textADRhin = "Čvrsta materija koja reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a === "32") {
-            textADRhin = "Zapaljiva čvrsta materija koja reaguje opasno s vodom, ispuštajući zapaljive gasove. *";
-        } else if (a === "33") {
-            textADRhin = "Spontano zapaljiva (piroforna) čvrsta materija.";
-        } else if (a === "34") {
-            textADRhin = "Zapaljiva čvrsta materija, u otopljenom stanju pri povišenoj temperaturi.";
-        } else if (a === "35") {
-            textADRhin = "Zapaljiva čvrsta materija, otrovna, u otopljenom stanju, pri povišenoj temperaturi.";
-        } else if (a === "36") {
-            textADRhin = "Zapaljiva ili samozagrijavajuća čvrsta materija, otrovna.";
-        } else if (a === "37") {
-            textADRhin = "Otrovna čvrsta materija koja reaguje sa vodom, ispuštajući zapaljive gasove.";
-        } else if (a === "38") {
-            textADRhin = "Čvrsta materija koja reaguje opasno sa vodom, stvara otrovne gasove. *";
-        } else if (a === "39") {
-            textADRhin = "Zapaljiva ili samozagrijavajuća čvrsta materija, korozivna.";
-        } else if (a === "40") {
-            textADRhin = "Korozivna čvrsta materija koja reaguje sa vodom, stvara zapaljive gasove.";
-        } else if (a === "41") {
-            textADRhin = "Korozivna materija koja reaguje opasno sa vodom, stvara korozivne gasove. *";
-        } else if (a === "42") {
-            textADRhin = "Oksidirajuća materija (pojačava vatru).";
-        } else if (a === "43") {
-            textADRhin = "Zapaljivi organski peroksid.";
-        } else if (a === "44") {
-            textADRhin = "Jako oksidirajuća materija (pojačava vatru).";
-        } else if (a === "45") {
-            textADRhin = "Jako oksidirajuća materija, otrovna (pojačava vatru).";
-        } else if (a === "46") {
-            textADRhin = "Jako oksidirajuća materija, korozivna (pojačava vatru).";
-        } else if (a === "47") {
-            textADRhin = "Jako oksidirajuća materija, može spontano burno reagovati (pojačava vatru).";
-        } else if (a === "48") {
-            textADRhin = "Oksidirajuća materija, otrovna (pojačava vatru).";
-        } else if (a === "49") {
-            textADRhin = "Oksidirajuća materija, otrovna, korozivna (pojačava vatru).";
-        } else if (a === "50") {
-            textADRhin = "Oksidirajuća materija, korozivna (pojačava vatru).";
-        } else if (a === "51") {
-            textADRhin = "Oksidirajuća materija, može spontano dovesti do burne reakcije (pojačava vatru).";
-        } else if (a === "52") {
-            textADRhin = "Otrovna ili slabo otrovna materija.";
-        } else if (a === "53") {
-            textADRhin = "Zarazna materija.";
-        } else if (a === "54") {
-            textADRhin = "Otrovna tečnost, reaguje sa vodom, stvara zapaljive gasove.";
-        } else if (a === "55") {
-            textADRhin = "Otrovna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo).";
-        } else if (a === "56") {
-            textADRhin = "Otrovna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), korozivna.";
-        } else if (a === "57") {
-            textADRhin = "Otrovna materija, zapaljiva (tačka paljenja ne iznad 60 &#8451;, uključivo), može spontano dovesti do burne reaklcije.";
-        } else if (a === "58") {
-            textADRhin = "Korozivna ili slabo korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), može spontano dovesti do burne reakcije.";
-        } else if (a === "59") {
-            textADRhin = "Korozivna ili slabo korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), može spontano burno reagovati i koja reaguje opasno sa vodom. *";
-        } else if (a === "60") {
-            textADRhin = "Korozivna čvrsta materija, zapaljiva ili samozagrijavajća.";
-        } else if (a === "61") {
-            textADRhin = "Korozivna čvrsta materija, reaguje sa vodom, stvara zapaljive gasove.";
-        } else if (a === "62") {
-            textADRhin = "Korozivna ili slabo korozivna materija, oksidirajuća (pojačava vatru).";
-        } else if (a === "63") {
-            textADRhin = "Korozivna ili slabo korozivna materija, oksidirajuća (pojačava vatru), i otrovna.";
-        } else if (a === "64") {
-            textADRhin = "Korozivna ili slabo korozivna materija, otrovna.";
-        } else if (a === "65") {
-            textADRhin = "Jako korozivna materija.";
-        } else if (a === "66") {
-            textADRhin = "Jako korozivna materija, reaguje opasno sa vodom. *";
-        } else if (a === "67") {
-            textADRhin = "Jako korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo).";
-        } else if (a === "68") {
-            textADRhin = "Jako korozivna čvrsta materija, zapaljiva ili samozagrijavajuća.";
-        } else if (a === "69") {
-            textADRhin = "Jako korozivna materija, oksidirajuća (pojačava vatru).";
-        } else if (a === "70") {
-            textADRhin = "Jako korozivna materija, otrovna.";
-        } else if (a === "71") {
-            textADRhin = "Jako korozivna materija, otrovna, reaguje opasno sa vodom. *";
-        } else if (a === "72") {
-            textADRhin = "Korozivna ili slabo korozivna materija, može spontano dovesti do burne reakcije.";
-        } else if (a === "73") {
-            textADRhin = "Materija opasna za okolinu; razne opasne materije.";
-        } else if (a === "74") {
-            textADRhin = "Razne opasne materije, transportuju se na povišenoj temperaturi.";
-        } else {
-            textADRhin = "";
+    $("select#ibo").on("click", function () {
+        const adrMessage = {
+            "1": "Zagušljivač ili gas bez dodatne opasnosti.",
+            "2": "Pothlađeni ukapljeni gas, zagušljivač.",
+            "3": "Pothlađeni ukapljeni gas, zapaljiv.",
+            "4": "Pothlađeni ukapljeni gas, oksidirajući (pojačava vatru).",
+            "5": "Zapaljivi gas.",
+            "6": "Zapaljivi gas, koji može spontano dovesti do burne reakcije.",
+            "7": "Oksidirajući (pojačava vatru).",
+            "8": "Otrovni gas.",
+            "9": "Otrovni gas, zapaljiv.",
+            "10": "Otrovni gas, oksidirajući (pojačava vatru).",
+            "11": "Otrovni gas, korozivni.",
+            "12": "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), ili zapaljiva tečnost ili čvrsta materija u otopljenom stanju sa tačkom paljenja iznad 60 &#8451;, zagrijana do temperature jednake ili iznad njene tačke paljenja, ili samozagrijavajuća tečnost.",
+            "13": "Zapaljiva tečnost koja reaguje s vodom, ispuštajući zapaljive gasove.",
+            "14": "Zapaljiva tečnost koja reaguje opasno s vodom, ispuštajući zapaljive gasove.",
+            "15": "Jako zapaljiva tečnost (tačka paljenja ispod 23 &#8451;).",
+            "16": "Piroforna tečnost.",
+            "17": "Piroforna tečnost koja reaguje opasno sa vodom. *",
+            "18": "Jako zapaljiva tečnost, otrovna.",
+            "19": "Jako zapaljiva tečnost, korozivna.",
+            "20": "Jako zapaljiva tečnost, korozivna, koja reaguje opasno sa vodom. *",
+            "21": "Jako zapaljiva tečnost koja može spontano dovesti do burne reakcije.",
+            "22": "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), slabo otrovna ili samozagrijavajuća tečnost, otrovna.",
+            "23": "Zapaljiva tečnost, otrovna, reaguje sa vodom, ispuštajući zapaljive gasove.",
+            "24": "Zapaljiva tečnost, otrovna, reagujući sa vodom, stvara zapaljive gasove. *",
+            "25": "Zapaljiva tečnost, otrovna, korozivna.",
+            "26": "Zapaljiva tečnost (tačka paljenja između 23 i 60 &#8451;, uključivo), slabo korozivna ili samozagrijavajuća tečnost, korozivna.",
+            "27": "Zapaljiva tečnost, korozivna, reaguje sa vodom, ispuštajući zapaljive gasove.",
+            "28": "Zapaljiva tečnost, korozivna, reagujući sa vodom, stvara zapaljive gasove. *",
+            "29": "Zapaljiva tečnost, može spontano dovesti do burne reakcije.",
+            "30": "Zapaljiva čvrsta ili samoreaktivna materija, ili samozagrijavajuća materija.",
+            "31": "Čvrsta materija koja reaguje sa vodom, ispuštajući zapaljive gasove.",
+            "32": "Zapaljiva čvrsta materija koja reaguje opasno s vodom, ispuštajući zapaljive gasove. *",
+            "33": "Spontano zapaljiva (piroforna) čvrsta materija.",
+            "34": "Zapaljiva čvrsta materija, u otopljenom stanju pri povišenoj temperaturi.",
+            "35": "Zapaljiva čvrsta materija, otrovna, u otopljenom stanju, pri povišenoj temperaturi.",
+            "36": "Zapaljiva ili samozagrijavajuća čvrsta materija, otrovna.",
+            "37": "Otrovna čvrsta materija koja reaguje sa vodom, ispuštajući zapaljive gasove.",
+            "38": "Čvrsta materija koja reaguje opasno sa vodom, stvara otrovne gasove. *",
+            "39": "Zapaljiva ili samozagrijavajuća čvrsta materija, korozivna.",
+            "40": "Korozivna čvrsta materija koja reaguje sa vodom, stvara zapaljive gasove.",
+            "41": "Korozivna materija koja reaguje opasno sa vodom, stvara korozivne gasove. *",
+            "42": "Oksidirajuća materija (pojačava vatru).",
+            "43": "Zapaljivi organski peroksid.",
+            "44": "Jako oksidirajuća materija (pojačava vatru).",
+            "45": "Jako oksidirajuća materija, otrovna (pojačava vatru).",
+            "46": "Jako oksidirajuća materija, korozivna (pojačava vatru).",
+            "47": "Jako oksidirajuća materija, može spontano burno reagovati (pojačava vatru).",
+            "48": "Oksidirajuća materija, otrovna (pojačava vatru).",
+            "49": "Oksidirajuća materija, otrovna, korozivna (pojačava vatru).",
+            "50": "Oksidirajuća materija, korozivna (pojačava vatru).",
+            "51": "Oksidirajuća materija, može spontano dovesti do burne reakcije (pojačava vatru).",
+            "52": "Otrovna ili slabo otrovna materija.",
+            "53": "Zarazna materija.",
+            "54": "Otrovna tečnost, reaguje sa vodom, stvara zapaljive gasove.",
+            "55": "Otrovna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo).",
+            "56": "Otrovna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), korozivna.",
+            "57": "Otrovna materija, zapaljiva (tačka paljenja ne iznad 60 &#8451;, uključivo), može spontano dovesti do burne reaklcije.",
+            "58": "Korozivna ili slabo korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), može spontano dovesti do burne reakcije.",
+            "59": "Korozivna ili slabo korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo), može spontano burno reagovati i koja reaguje opasno sa vodom. *",
+            "60": "Korozivna čvrsta materija, zapaljiva ili samozagrijavajća.",
+            "61": "Korozivna čvrsta materija, reaguje sa vodom, stvara zapaljive gasove.",
+            "62": "Korozivna ili slabo korozivna materija, oksidirajuća (pojačava vatru).",
+            "63": "Korozivna ili slabo korozivna materija, oksidirajuća (pojačava vatru), i otrovna.",
+            "64": "Korozivna ili slabo korozivna materija, otrovna.",
+            "65": "Jako korozivna materija.",
+            "66": "Jako korozivna materija, reaguje opasno sa vodom. *",
+            "67": "Jako korozivna materija, zapaljiva (tačka paljenja između 23 i 60 &#8451;, uključivo).",
+            "68": "Jako korozivna čvrsta materija, zapaljiva ili samozagrijavajuća.",
+            "69": "Jako korozivna materija, oksidirajuća (pojačava vatru).",
+            "70": "Jako korozivna materija, otrovna.",
+            "71": "Jako korozivna materija, otrovna, reaguje opasno sa vodom. *",
+            "72": "Korozivna ili slabo korozivna materija, može spontano dovesti do burne reakcije.",
+            "73": "Materija opasna za okolinu; razne opasne materije.",
+            "74": "Razne opasne materije, transportuju se na povišenoj temperaturi."
         }
-        return $("p.card-text").last().addClass("my-3").html(textADRhin);
+        return $("p.card-text").last().addClass("my-3").html(adrMessage[$("#ibo").val()] || "");
     }).addClass("form-control");
     $("canvas#myChart").addClass("w-100 mx-auto").css("max-width", "700px");
     $("form:eq(2)").on("input", function () {
@@ -361,8 +283,8 @@ $(document).ready(() => {
             { x: Sx, y: Sy },
             { x: Sox, y: Soy }
         ];
-        const arrayX = [P1x, P2x, P3x, Sx, Sox]; 
-        const arrayY = [P1y, P2y, P3y, Sy, Soy]; 
+        const arrayX = [P1x, P2x, P3x, Sx, Sox];
+        const arrayY = [P1y, P2y, P3y, Sy, Soy];
         const maxX = Math.max(...arrayX);
         const maxY = Math.max(...arrayY);
         new Chart("myChart", {
